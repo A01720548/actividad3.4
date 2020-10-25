@@ -14,7 +14,7 @@ public:
     int repetitions;
     TreeNode* left;
     TreeNode* right;
-    TreeNode(string, string, int);
+    TreeNode(string, string);
 
 };
 
@@ -23,11 +23,11 @@ public:
  *
  * @param datum Data that will go into tree
  */
-TreeNode::TreeNode(string ip, string content, int repetitions)
+TreeNode::TreeNode(string ip, string content)
 {
     this->ip = ip;
     this->content = content;
-    this->repetitions = repetitions;
+    this->repetitions = 0;
     this->right = this->left = nullptr;
 }
 

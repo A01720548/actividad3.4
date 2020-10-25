@@ -4,21 +4,25 @@
 #include "TreeNode.h"
 
 #include <iostream>
+#include <string>
+
 class BinarySearchTree
 {
 private:
     TreeNode* root;
     int size;
     void printPreOrderRecursive(TreeNode* which);
-    TreeNode* RecursiveInsert(TreeNode* where, int datum);
+    TreeNode* RecursiveInsert(TreeNode* where, string ip, string content);
+    TreeNode* RecursiveTop5(TreeNode* where);
 
 public:
     BinarySearchTree(/* args */);
     ~BinarySearchTree();
-    void insert(int datum);
+    void insert(string ip, string content);
     void Inorder(TreeNode* root);
     int getSize();
     void printPreOrder();
+    void getTop5Wrapper(TreeNode* root);
 };
 
 BinarySearchTree::BinarySearchTree(/* args */)
@@ -31,9 +35,9 @@ BinarySearchTree::~BinarySearchTree()
 {
 }
 
-void BinarySearchTree::insert(int datum)
+void BinarySearchTree::insert(string ip, string content)
 {
-    this->root = RecursiveInsert(root, datum);
+    this->root = RecursiveInsert(root, ip, content);
 }
 
 int BinarySearchTree::getSize()
@@ -42,24 +46,31 @@ int BinarySearchTree::getSize()
 }
 
 
-TreeNode* BinarySearchTree::RecursiveInsert(TreeNode* root, int datum)
+TreeNode* BinarySearchTree::RecursiveInsert(TreeNode* root, string ip, string content)
 {
     if (!root) {
-        root = new TreeNode(datum);
+        root = new TreeNode(ip, content);
+        root->repetitions++;
         this->size++;
 
     }
-    else if (datum > root->datum) {
-        root->right = RecursiveInsert(root->right, datum);
+    else if (ip > root->ip) {
+        root->right = RecursiveInsert(root->right, ip, content);
     }
-    else if (datum < root->datum) {
-        root->left = RecursiveInsert(root->left, datum);
+    else if (ip < root->ip) {
+        root->left = RecursiveInsert(root->left, ip, content);
     }
     else
     {
-        std::cout << "Element already exists";
+        root->repetitions++;
     }
     return root;
+}
+
+TreeNode* BinarySearchTree::RecursiveTop5(TreeNode* where)
+{
+    int top5[5];
+
 }
 
 void BinarySearchTree::printPreOrder()
@@ -67,9 +78,14 @@ void BinarySearchTree::printPreOrder()
     printPreOrderRecursive(this->root);
 }
 
+void BinarySearchTree::getTop5Wrapper(TreeNode* root)
+{
+    RecursiveTop5(root);
+}
+
 void BinarySearchTree::printPreOrderRecursive(TreeNode* which) {
     if (which != nullptr) {
-        std::cout << '[' << which->datum << ' ';
+        std::cout << '[' << which->ip << ' ' << which->content << ' ';
         printPreOrderRecursive(which->left);
         printPreOrderRecursive(which->right);
         std::cout << ']';

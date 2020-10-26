@@ -11,7 +11,6 @@ class BinarySearchTree
 {
 private:
     TreeNode* root;
-
     int size;
     void printPreOrderRecursive(TreeNode* which);
     TreeNode* RecursiveInsert(TreeNode* where, string ip, string content);
@@ -21,8 +20,7 @@ private:
 
 
 public:
-    BinarySearchTree(/* args */);
-    ~BinarySearchTree();
+    BinarySearchTree();
     void insert(string ip, string content);
     int getSize();
     void printPreOrder();
@@ -30,15 +28,13 @@ public:
 
 };
 
-BinarySearchTree::BinarySearchTree(/* args */)
+BinarySearchTree::BinarySearchTree()
 {
     this->root = nullptr;
     this->size = 0;
 }
 
-BinarySearchTree::~BinarySearchTree()
-{
-}
+
 
 void BinarySearchTree::insert(string ip, string content)
 {
@@ -83,7 +79,6 @@ void BinarySearchTree::RecursiveTop5(TreeNode* where)
     {
         if (where->repetitions > 1) {
             repetidos.push_back(where);
-            cout << "repedito" << endl;
         }
 
         RecursiveTop5(where->left);
@@ -97,20 +92,19 @@ void BinarySearchTree::RecursiveTop5(TreeNode* where)
 
 void BinarySearchTree::sortRepetidos()
 {
-    TreeNode* temp;
-    for (int i = 0; i < repetidos.size(); i++)
+    for (int i = 0;i < repetidos.size() - 1;i++)
     {
-        for (int j = i + 1; j < repetidos.size(); j++)
+        for (int j = 0;j < repetidos.size() - i - 1;j++)
         {
-            if (repetidos[j]->repetitions > repetidos[i]->repetitions) {
-                repetidos[i] = temp;
-                repetidos[i] = repetidos[j];
-                repetidos[j] = temp;
-
+            if (repetidos[j]->repetitions < repetidos[j + 1]->repetitions)
+            {
+                TreeNode* temp = repetidos[j];
+                repetidos[j] = repetidos[j + 1];
+                repetidos[j + 1] = temp;
             }
         }
-
     }
+
 
 }
 
@@ -125,12 +119,11 @@ void BinarySearchTree::getTop5()
     RecursiveTop5(this->root);
     cout << repetidos.size() << endl;
     sortRepetidos();
-
+    cout << repetidos.size() << endl;
     for (int i = 0; i < 5; i++)
     {
-        cout << repetidos[i]->ip << ' ' << repetidos[i]->content << ' ' << repetidos[i]->repetitions << endl;
+        cout << "Numero de Repeticiones: " << repetidos[i]->repetitions << " IP: " << repetidos[i]->ip << " Contenido: " << repetidos[i]->content << endl;
     }
-    //cout << root->right->repetitions;
 
 }
 

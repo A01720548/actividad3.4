@@ -72,19 +72,5 @@ int main() {
 
     myTree.getTop5();
 
-
-
-    /**
-         * @brief This for loop will output into our file the ips that meet the criteria
-         * Complexity: O(n)
-         */
-         // ofstream sorted("result.txt", ios::binary);
-         // for (size_t i = 0; i < count; i++)
-         // {
-         //     /* code */
-         // }
-
-
-    // sorted << *end << endl;
     return 0;
 }

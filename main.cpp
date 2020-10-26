@@ -1,3 +1,13 @@
+/**
+ * @file Actividad 3.4
+ * @author Esteban de la Maza, Raul Jerlach, Ricardo Jasso
+ * @brief
+ * @version 0.1
+ * @date 2020-10-25
+ *
+ * @copyright Copyright (c) 2020
+ *
+ */
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -49,6 +59,13 @@ string getIp(string singleLine) {
     return retVal;
 }
 
+/**
+ * @brief Recieves the string from file and returns the content
+ * of what happened
+ *
+ * @param singleLine Read from file
+ * @return string Content that will be inserted into tree node
+ */
 string getContent(string singleLine) {
     string content = singleLine.substr(29);
     int spacePos = content.find(" ");
@@ -65,7 +82,6 @@ int main() {
         myTree.insert(getIp(singleLine), getContent(singleLine));
     }
 
-    //myTree.printPreOrder();
 
     cout << myTree.getSize() << " lines in memory" << endl;
     file.close();

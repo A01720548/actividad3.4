@@ -21,7 +21,8 @@ public:
 /**
  * @brief Construct a new node with a parameter
  *
- * @param datum Data that will go into tree
+ * @param ip IP that will go into tree
+ * @param content Content that will go into tree
  */
 TreeNode::TreeNode(string ip, string content)
 {

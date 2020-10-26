@@ -28,6 +28,10 @@ public:
 
 };
 
+/**
+ * @brief Construct a new Binary Search Tree:: Binary Search Tree object
+ * Complexity: O(1)
+ */
 BinarySearchTree::BinarySearchTree()
 {
     this->root = nullptr;
@@ -35,18 +39,35 @@ BinarySearchTree::BinarySearchTree()
 }
 
 
-
+/**
+ * @brief Insertion wrapper function
+ * Complexity : O(1)
+ * @param ip the ip that will be added to the tree
+ * @param content What happened in the event
+ */
 void BinarySearchTree::insert(string ip, string content)
 {
     this->root = RecursiveInsert(root, ip, content);
 }
 
+/**
+ * @brief Returns the size of the tree
+ * Complexity: O(1)
+ * @return int size
+ */
 int BinarySearchTree::getSize()
 {
     return size;
 }
 
-
+/**
+ * @brief Inserts element into BST if it isn't already
+ *Complexity: O(logn)
+ * @param root Current tree, starting from the root
+ * @param ip IP that will be added into list
+ * @param content content that will be added into list
+ * @return TreeNode* The tree but with the added node
+ */
 TreeNode* BinarySearchTree::RecursiveInsert(TreeNode* root, string ip, string content)
 {
 
@@ -70,6 +91,11 @@ TreeNode* BinarySearchTree::RecursiveInsert(TreeNode* root, string ip, string co
     return root;
 }
 
+/**
+ * @brief Function that will find all cases of duplicates and will add them to the vector
+ * Complexity: O(n)
+ * @param where Root of tree
+ */
 void BinarySearchTree::RecursiveTop5(TreeNode* where)
 {
     if (!where) {
@@ -89,7 +115,10 @@ void BinarySearchTree::RecursiveTop5(TreeNode* where)
 
 
 }
-
+/**
+ * @brief Bubble sort to get the Nodes with the most repetitions
+ * Complexity: O(n^2)
+ */
 void BinarySearchTree::sortRepetidos()
 {
     for (int i = 0;i < repetidos.size() - 1;i++)
@@ -108,12 +137,19 @@ void BinarySearchTree::sortRepetidos()
 
 }
 
-
+/**
+ * @brief Wrapper function to print tree
+ * Complexity: O(1)
+ */
 void BinarySearchTree::printPreOrder()
 {
     printPreOrderRecursive(this->root);
 }
 
+/**
+ * @brief Wrapper function to print the top 5 most accessed IPs
+ * Complexity: O(n)
+ */
 void BinarySearchTree::getTop5()
 {
     RecursiveTop5(this->root);
@@ -127,7 +163,11 @@ void BinarySearchTree::getTop5()
 
 }
 
-
+/**
+ * @brief Function to print Tree
+ * Complexity: O(n)
+ * @param which
+ */
 void BinarySearchTree::printPreOrderRecursive(TreeNode* which) {
     if (which != nullptr) {
         std::cout << '[' << which->ip << ' ' << which->content << ' ';

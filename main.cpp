@@ -65,10 +65,13 @@ int main() {
         myTree.insert(getIp(singleLine), getContent(singleLine));
     }
 
-    myTree.printPreOrder();
+    //myTree.printPreOrder();
 
     cout << myTree.getSize() << " lines in memory" << endl;
     file.close();
+
+    myTree.getTop5();
+
 
 
     /**
@@ -76,9 +79,12 @@ int main() {
          * Complexity: O(n)
          */
          // ofstream sorted("result.txt", ios::binary);
-         // for (list<string>::iterator i = start; i != end; i++)
-         //     sorted << *i << endl;
+         // for (size_t i = 0; i < count; i++)
+         // {
+         //     /* code */
+         // }
 
-         // sorted << *end << endl;
+
+    // sorted << *end << endl;
     return 0;
 }
